@@ -1,17 +1,42 @@
-import { createBrowserRouter } from "react-router-dom";
+import { Navigate, createBrowserRouter } from "react-router-dom";
 import { ErrorPage, HomePage, LoginPage } from "../pages";
 import { Layout } from "@/components/Layout/Layout";
+import { Giveaways } from "@/pages/Giveaways/Giveaways";
+import { useAppStore } from "@/stores/appStore/useAppStore";
 
-const routes = [
+interface Route {
+    Element: JSX.Element;
+    path: string;
+    type: "public" | "private";
+}
+
+const routes: Route[] = [
     {
         path: "",
-        element: <HomePage />,
+        type: "public",
+        Element: <HomePage />,
     },
     {
         path: "/login",
-        element: <LoginPage />,
+        type: "public",
+        Element: <LoginPage />,
+    },
+    {
+        path: "/giveaways",
+        type: "private",
+        Element: <Giveaways />,
     },
 ];
+
+const ProtectedRoute = (route: Route) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const { token } = useAppStore();
+
+    if (route.type === "private" && token) return route.Element;
+    if (route.type === "private" && !token) return <Navigate to="/login" />;
+    if (route.type === "public" && token) return <Navigate to="/giveaways" />;
+    return route.Element;
+};
 
 export const AppRouter = createBrowserRouter([
     {
@@ -20,7 +45,13 @@ export const AppRouter = createBrowserRouter([
         errorElement: <ErrorPage />,
         children: routes.map((route) => ({
             path: route.path,
-            element: route.element,
+            element: (
+                <ProtectedRoute
+                    path={route.path}
+                    Element={route.Element}
+                    type={route.type}
+                />
+            ),
         })),
     },
 ]);
