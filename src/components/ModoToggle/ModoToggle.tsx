@@ -7,10 +7,30 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useTheme } from "../../stores/ThemeProvider/ThemeProvider";
+import { useAppStore } from "@/stores/appStore/useAppStore";
+import { useEffect } from "react";
 
 export function ModeToggle() {
-    const { setTheme } = useTheme();
+    const { setTheme, theme } = useAppStore();
+
+    useEffect(() => {
+        const root = window.document.documentElement;
+
+        root.classList.remove("light", "dark");
+
+        if (theme === "system") {
+            const systemTheme = window.matchMedia(
+                "(prefers-color-scheme: dark)"
+            ).matches
+                ? "dark"
+                : "light";
+
+            root.classList.add(systemTheme);
+            return;
+        }
+
+        root.classList.add(theme);
+    }, [theme]);
 
     return (
         <div className="absolute top-5 right-5">
