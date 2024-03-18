@@ -1,5 +1,7 @@
 import { giveawayApi } from "@/api/giveaway.api";
 import {
+    CreateParticipant,
+    CreateParticipantRes,
     Giveaway,
     LoginData,
     ResponseGetGiveaway,
@@ -33,3 +35,10 @@ export const getUsers = async (token: string) => {
     const { data } = await giveawayApi(token).get("/users");
     return data;
 };
+
+export const createParticipant = async (
+    participantData: CreateParticipant
+): Promise<CreateParticipantRes> => {
+    const { data } = await giveawayApi().post<CreateParticipantRes>("/participants", participantData);
+    return data;
+}
