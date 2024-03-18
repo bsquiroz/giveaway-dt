@@ -19,7 +19,6 @@ export function formatDate({date, withHour = false}: FormatDateParams) {
   if (withHour) {
     options.hour = 'numeric';
     options.minute = '2-digit';
-    // options.hour12 = true;
   }
-  return new Date(date).toLocaleDateString('es-MX', options);
+  return new Date(date).toLocaleDateString('es-CO', options);
 }
