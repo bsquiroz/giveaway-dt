@@ -18,11 +18,18 @@ export const loginAdm = async (
 };
 
 export const getGiveaways = async (): Promise<ResponseGetGiveaway> => {
-    const { data } = await giveawayApi().get("/giveaways");
+    const { data } = await giveawayApi().get(
+        "/giveaways?pendings=true&status=ACTIVE"
+    );
     return data;
 };
 
 export const getGiveaway = async (id: string): Promise<Giveaway> => {
     const { data } = await giveawayApi().get(`/giveaways/${id}`);
+    return data;
+};
+
+export const getUsers = async (token: string) => {
+    const { data } = await giveawayApi(token).get("/users");
     return data;
 };
