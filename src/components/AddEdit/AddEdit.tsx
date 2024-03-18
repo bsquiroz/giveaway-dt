@@ -34,7 +34,7 @@ const formSchema = z.object({
   }),
   giveawayDate: z.string(),
   image: z.string(),
-  participantsLimit: z.string(),
+  participantsLimit: z.number(),
   status: z.string(),
 })
 
