@@ -5,6 +5,7 @@ import { Giveaways } from "@/pages/Giveaways/Giveaways";
 import { useAppStore } from "@/stores/appStore/useAppStore";
 import { Giveaway } from "@/pages/Giveaways/[id]/Giveaway";
 import { Dash } from "@/pages/Dash/Dash";
+import VerifyDiscord from "@/pages/VerifyDiscord/VerifyDiscord";
 
 interface Route {
     Element: JSX.Element;
@@ -32,6 +33,11 @@ const routes: Route[] = [
         path: "/giveaways/:id",
         type: "public",
         Element: <Giveaway />,
+    },
+    {
+        path: "/verify-discord",
+        type: "public",
+        Element: <VerifyDiscord />,
     },
     {
         path: "/dash",
