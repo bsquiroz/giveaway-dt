@@ -1,5 +1,6 @@
-import { useQuery } from "react-query";
-import { getUsers } from "@/services/actions";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import { getUsers, postUser, deleteUser } from "@/services/actions";
+import { DataFormUser } from "@/pages/Dash/pages/Users/interfaces";
 
 interface DataDash {
     id?: string | null;
@@ -7,10 +8,31 @@ interface DataDash {
 }
 
 export const useDash = (data: DataDash) => {
+    const queryClient = useQueryClient();
     const queryGetUsers = useQuery({
-        queryKey: ["getGiveaway"],
+        queryKey: ["getUsers"],
         queryFn: () => getUsers(data.token!),
     });
 
-    return { queryGetUsers };
+    const queryCreateUser = useMutation({
+        mutationFn: (dataCreateUser: DataFormUser) => {
+            return postUser(data.token!, dataCreateUser);
+        },
+
+        onSuccess: () => {
+            queryClient.refetchQueries(["getUsers"]);
+        },
+    });
+
+    const queryDeleteUser = useMutation({
+        mutationFn: (id: string | number) => {
+            return deleteUser(data.token!, id);
+        },
+
+        onSuccess: () => {
+            queryClient.refetchQueries(["getUsers"]);
+        },
+    });
+
+    return { queryGetUsers, queryCreateUser, queryDeleteUser };
 };

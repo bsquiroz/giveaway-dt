@@ -39,13 +39,13 @@ export interface CreateParticipant {
 
 export interface CreateParticipantRes {
     participantId: number;
-    discordId:     string;
-    fullname:      string;
-    email:         string;
-    giveawayId:    number;
-    createdIt:     string;
-    status:        string;
-    giveaway:      GiveawayTitle;
+    discordId: string;
+    fullname: string;
+    email: string;
+    giveawayId: number;
+    createdIt: string;
+    status: string;
+    giveaway: GiveawayTitle;
 }
 
 export interface GiveawayTitle {
@@ -59,3 +59,9 @@ export interface Prize {
     quantity:   number;
 }
 
+export interface DashUsers {
+    avatar?: string;
+    email: string;
+    fullname: string;
+    userId: number | string;
+}
