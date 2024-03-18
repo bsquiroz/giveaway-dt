@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label";
 import { useLoginAdm } from "@/hooks/useLoginAdm";
 import { LoginData } from "@/interfaces";
 import { useAppStore } from "@/stores/appStore/useAppStore";
+import { useEffect } from "react";
 
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -12,7 +13,7 @@ import { toast } from "sonner";
 
 export const LoginPage = () => {
     const navigate = useNavigate();
-    const { setUser, setToken } = useAppStore();
+    const { setUser, setToken, token } = useAppStore();
 
     const { register, handleSubmit } = useForm<LoginData>({
         defaultValues: {
@@ -37,19 +38,23 @@ export const LoginPage = () => {
                 setToken(response.token);
                 setUser(response.user);
 
-                navigate("/giveaways");
+                navigate("/dash");
             })
             .catch(() => {
                 return toast.error("Ocurrio un error, intenta mas tarde");
             });
     };
 
+    useEffect(() => {
+        if (token) return navigate("/dash");
+    }, [navigate, token]);
+
     return (
         <>
             {mutationLoginAdm.isLoading && <Spinner />}
             <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="flex flex-col gap-5"
+                className="flex flex-1 flex-col gap-5"
             >
                 <div className="grid w-full max-w-sm items-center gap-1.5">
                     <Label htmlFor="email">Email</Label>

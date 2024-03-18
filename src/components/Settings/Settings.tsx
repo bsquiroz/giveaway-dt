@@ -31,8 +31,12 @@ export const Settings = () => {
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-                <DropdownMenuItem onClick={() => {}}>Sorteos</DropdownMenuItem>
-                <DropdownMenuItem onClick={() => {}}>Perfil</DropdownMenuItem>
+                <DropdownMenuItem onClick={() => navigate("/dash")}>
+                    Dashboard
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => navigate("/")}>
+                    Home
+                </DropdownMenuItem>
                 <DropdownMenuItem onClick={handleLogout} className="bg-red-500">
                     Cerrar sesion
                 </DropdownMenuItem>

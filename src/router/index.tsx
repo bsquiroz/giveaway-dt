@@ -3,6 +3,8 @@ import { ErrorPage, HomePage, LoginPage } from "../pages";
 import { Layout } from "@/components/Layout/Layout";
 import { Giveaways } from "@/pages/Giveaways/Giveaways";
 import { useAppStore } from "@/stores/appStore/useAppStore";
+import { Giveaway } from "@/pages/Giveaways/[id]/Giveaway";
+import { Dash } from "@/pages/Dash/Dash";
 
 interface Route {
     Element: JSX.Element;
@@ -23,8 +25,18 @@ const routes: Route[] = [
     },
     {
         path: "/giveaways",
-        type: "private",
+        type: "public",
         Element: <Giveaways />,
+    },
+    {
+        path: "/giveaways/:id",
+        type: "public",
+        Element: <Giveaway />,
+    },
+    {
+        path: "/dash",
+        type: "private",
+        Element: <Dash />,
     },
 ];
 
@@ -34,7 +46,6 @@ const ProtectedRoute = (route: Route) => {
 
     if (route.type === "private" && token) return route.Element;
     if (route.type === "private" && !token) return <Navigate to="/login" />;
-    if (route.type === "public" && token) return <Navigate to="/giveaways" />;
     return route.Element;
 };
 
