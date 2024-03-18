@@ -68,8 +68,6 @@ export const getPrizes = async (
     return data;
 }
 
-};
-
 export const deleteUser = async (token: string, id: string | number) => {
     const { data } = await giveawayApi(token).delete(`/users/${id}`);
     return data;
