@@ -30,3 +30,26 @@ export interface Giveaway {
     createdAt: string;
     status: string;
 }
+
+export interface CreateParticipant {
+    giveawayId: number;
+    code: string;
+    redirectUri: string;
+}
+
+export interface CreateParticipantRes {
+    participantId: number;
+    discordId:     string;
+    fullname:      string;
+    email:         string;
+    giveawayId:    number;
+    createdIt:     string;
+    status:        string;
+    giveaway:      GiveawayTitle;
+}
+
+export interface GiveawayTitle {
+    title: string;
+}
+
+

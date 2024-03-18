@@ -6,6 +6,8 @@ import { useAppStore } from "@/stores/appStore/useAppStore";
 import { Giveaway } from "@/pages/Giveaways/[id]/Giveaway";
 import { Dash } from "@/pages/Dash/Dash";
 import VerifyDiscord from "@/pages/VerifyDiscord/VerifyDiscord";
+import { DashUsers } from "@/pages/Dash/pages/Users/Users";
+import { DashGiveaways } from "@/pages/Dash/pages/Giveaways/Giveaways";
 
 interface Route {
     Element: JSX.Element;
@@ -43,6 +45,16 @@ const routes: Route[] = [
         path: "/dash",
         type: "private",
         Element: <Dash />,
+    },
+    {
+        path: "/dash/users",
+        type: "private",
+        Element: <DashUsers />,
+    },
+    {
+        path: "/dash/giveaways",
+        type: "private",
+        Element: <DashGiveaways />,
     },
 ];
 

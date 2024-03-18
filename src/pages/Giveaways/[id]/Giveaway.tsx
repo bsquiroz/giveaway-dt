@@ -17,9 +17,11 @@ export const Giveaway = () => {
         queryGetGiveaway.data;
 
     const discordRedirect = () => {
+        if (!id) return;
         const frontUrl = window.location.origin + '/verify-discord';
         const encodedUrl = encodeURIComponent(frontUrl);
         window.location.href = `https://discord.com/oauth2/authorize?client_id=1217239373360271491&response_type=code&redirect_uri=${encodedUrl}&scope=identify+guilds.members.read+email`;
+        localStorage.setItem('giveawayId', id);
     }
 
     return (
