@@ -1,4 +1,4 @@
-import { giveawayApi } from "@/api/giveaway.api";
+import { giveawayApi } from "@/api/giveaway.api"
 import {
     CreateParticipant,
     CreateParticipantRes,
@@ -17,22 +17,29 @@ export const loginAdm = async (
     const { data } = await giveawayApi().post("/users/login", {
         email: dataLoginUser.email,
         password: dataLoginUser.password,
-    });
+    })
 
-    return data;
-};
+    return data
+}
 
 export const getGiveaways = async (): Promise<ResponseGetGiveaway> => {
     const { data } = await giveawayApi().get(
         "/giveaways?pendings=true&status=ACTIVE"
-    );
-    return data;
-};
+    )
+    return data
+}
+
+export const getGiveawaysAdmin = async (): Promise<ResponseGetGiveaway> => {
+    const { data } = await giveawayApi().get(
+        "/giveaways"
+    )
+    return data
+}
 
 export const getGiveaway = async (id: string): Promise<Giveaway> => {
-    const { data } = await giveawayApi().get(`/giveaways/${id}`);
-    return data;
-};
+    const { data } = await giveawayApi().get(`/giveaways/${id}`)
+    return data
+}
 
 export const getUsers = async (token: string): Promise<DashUsers[]> => {
     const { data } = await giveawayApi(token).get("/users");
