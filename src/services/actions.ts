@@ -4,6 +4,7 @@ import {
     CreateParticipantRes,
     Giveaway,
     LoginData,
+    Prize,
     ResponseGetGiveaway,
     ResponseLoginData,
 } from "@/interfaces";
@@ -40,5 +41,12 @@ export const createParticipant = async (
     participantData: CreateParticipant
 ): Promise<CreateParticipantRes> => {
     const { data } = await giveawayApi().post<CreateParticipantRes>("/participants", participantData);
+    return data;
+}
+
+export const getPrizes = async (
+    giveawayId: number
+): Promise<Prize[]> => {
+    const { data } = await giveawayApi().get<Prize[]>('/prizes?giveawayId='+giveawayId)
     return data;
 }

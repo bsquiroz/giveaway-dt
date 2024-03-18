@@ -52,4 +52,10 @@ export interface GiveawayTitle {
     title: string;
 }
 
+export interface Prize {
+    name:       string;
+    image:      string;
+    giveawayId: number;
+    quantity:   number;
+}
 
