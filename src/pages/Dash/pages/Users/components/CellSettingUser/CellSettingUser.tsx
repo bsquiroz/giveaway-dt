@@ -19,6 +19,9 @@ export const CellSettingUser = ({ row }: CellContext<DataColumn, unknown>) => {
     const { queryDeleteUser } = useDash({ token });
 
     function handleDelete(id: string | number) {
+        const res = confirm("Estas seguro que quieres eliminar?");
+
+        if (!res) return;
         queryDeleteUser
             .mutateAsync(id)
             .then(() =>

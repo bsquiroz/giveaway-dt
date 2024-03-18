@@ -34,12 +34,11 @@ export const FormUser = () => {
 
     return (
         <section>
-            <h2>Registrar usuario</h2>
             <form
                 onSubmit={handleSubmit(onSubmit)}
                 className="flex flex-1 flex-col gap-5"
             >
-                <div className="grid w-full max-w-sm items-center gap-1.5">
+                <div className="grid w-full max-w-sm items-center gap-1.5 m-auto">
                     <Label htmlFor="email">Email</Label>
                     <Input
                         type="email"
@@ -49,7 +48,7 @@ export const FormUser = () => {
                     />
                 </div>
 
-                <div className="grid w-full max-w-sm items-center gap-1.5">
+                <div className="grid w-full max-w-sm items-center gap-1.5 m-auto">
                     <Label htmlFor="fullname">Fullname</Label>
                     <Input
                         type="text"
@@ -59,7 +58,7 @@ export const FormUser = () => {
                     />
                 </div>
 
-                <div className="grid w-full max-w-sm items-center gap-1.5">
+                <div className="grid w-full max-w-sm items-center gap-1.5 m-auto">
                     <Label htmlFor="password">Password</Label>
                     <Input
                         type="password"
@@ -68,9 +67,7 @@ export const FormUser = () => {
                         {...register("password")}
                     />
                 </div>
-                <div>
-                    <Button>Registrar</Button>
-                </div>
+                <Button>Registrar</Button>
             </form>
         </section>
     );
