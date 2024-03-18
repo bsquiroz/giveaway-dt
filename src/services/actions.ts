@@ -5,6 +5,7 @@ import {
     DashUsers,
     Giveaway,
     LoginData,
+    Prize,
     ResponseGetGiveaway,
     ResponseLoginData,
 } from "@/interfaces";
@@ -58,7 +59,14 @@ export const postUser = async (token: string, dataPostUser: DataFormUser) => {
 
     const { data } = await giveawayApi(token).post("/users", newUser);
     return data;
-};
+}
+
+export const getPrizes = async (
+    giveawayId: number
+): Promise<Prize[]> => {
+    const { data } = await giveawayApi().get<Prize[]>('/prizes?giveawayId='+giveawayId)
+    return data;
+}
 
 export const deleteUser = async (token: string, id: string | number) => {
     const { data } = await giveawayApi(token).delete(`/users/${id}`);

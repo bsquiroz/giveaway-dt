@@ -10,7 +10,7 @@ export const Giveaways = () => {
         <div>
             <h2>Sorteos</h2>
 
-            <section className="grid grid-cols-response gap-5">
+            <section className="sm:grid grid-cols-2 gap-5">
                 {queryGetGiveaways.data?.results.map((giveaway) => {
                     if (giveaway.status === "ACTIVE") {
                         return (
