@@ -3,18 +3,45 @@ import {
     AccordionContent,
     AccordionItem,
     AccordionTrigger,
-} from "@/components/ui/accordion";
+} from "@/components/ui/accordion"
 
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Button } from "@/components/ui/button";
+import { Counter } from "@/components/Counter/Counter"
 
-import { Info } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { Button } from "@/components/ui/button"
+
+import { Info } from "lucide-react"
+import { useNavigate } from "react-router-dom"
 
 export const HomePage = () => {
-    const navigate = useNavigate();
+    const navigate = useNavigate()
     return (
         <section className="grid gap-4">
+            <div className='w-full'>
+                <div className='w-full h-full max-w-96 md:w-96 md:h-96 overflow-hidden mx-auto max-sm:pt-20 pt-40'>
+                    <img src="logo.png" alt="logo" className='w-full h-full object-cover' width={350} />
+                </div>
+            </div>
+
+            <div className='mb-10'>
+                <div className='text-5xl font-semibold'>
+                    <div className='flex gap-4 justify-center'>
+                        <span className='font-extrabold'><Counter start={0} end={7842} duration={4} style='text-5xl font-bold' /></span> <span>Sorteos realizados</span>
+                    </div>
+                </div>
+            </div>
+
+            <div className='mb-10'>
+                <div className='relative py-6 after:absolute after:bg-[linear-gradient(270deg,rgba(124,58,237,0),#7c3aed_50%,rgba(124,58,237,0))] after:h-[2px] after:top-0 after:left-2/4 after:w-2/4 after:translate-x-[-50%]'>
+                    <h1 className='text-6xl font-semibold text-primary text-center'>Sorteos Mensuales</h1>
+                    <div className='absolute top-0 left-0 w-full h-full bg-[linear-gradient(90deg,rgba(124,58,237,0),#7c3aed35,rgba(124,58,237,0))] z-0'></div>
+                </div>
+                <div className='relative py-6 after:absolute after:bg-[linear-gradient(270deg,rgba(124,58,237,0),#7c3aed_50%,rgba(124,58,237,0))] after:h-[2px] after:bottom-0 after:left-2/4 after:w-2/4 after:translate-x-[-50%]'>
+                    <p className='text-3xl text-center'>¡Ganar un regalo nunca ha sido tan fácil!</p>
+                </div>
+            </div>
+
+
             <h2>
                 ¡Participa en nuestros emocionantes sorteos mensuales con{" "}
                 <span>Devtalles</span>!
@@ -99,5 +126,5 @@ export const HomePage = () => {
                 Zona admin
             </Button>
         </section>
-    );
-};
+    )
+}
