@@ -1,58 +1,37 @@
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
-interface RegisterData {
-    email: string;
-    fullname: string;
-    password: string;
-}
+const options = [
+    {
+        id: 0,
+        path: "/dash/users",
+        text: "Usuarios",
+    },
+    {
+        id: 1,
+        path: "/dash/giveaways",
+        text: "Sorteos",
+    },
+];
 
 export const Dash = () => {
-    const { register, handleSubmit } = useForm<RegisterData>();
-
-    const onSubmit: SubmitHandler<RegisterData> = () => {};
-
+    const navigate = useNavigate();
     return (
         <div>
-            <form
-                onSubmit={handleSubmit(onSubmit)}
-                className="flex flex-1 flex-col gap-5"
-            >
-                <div className="grid w-full max-w-sm items-center gap-1.5">
-                    <Label htmlFor="email">Email</Label>
-                    <Input
-                        type="email"
-                        id="email"
-                        placeholder="Email"
-                        {...register("email")}
-                    />
-                </div>
-
-                <div className="grid w-full max-w-sm items-center gap-1.5">
-                    <Label htmlFor="password">Password</Label>
-                    <Input
-                        type="password"
-                        id="password"
-                        placeholder="****"
-                        {...register("password")}
-                    />
-                </div>
-
-                <div className="grid w-full max-w-sm items-center gap-1.5">
-                    <Label htmlFor="fullname">Fullname</Label>
-                    <Input
-                        type="text"
-                        id="fullname"
-                        placeholder="mariano pez"
-                        {...register("fullname")}
-                    />
-                </div>
-                <div>
-                    <Button>Registrar</Button>
-                </div>
-            </form>
+            <h2>Panel administrativo</h2>
+            <div className="flex flex-col gap-5 mt-4">
+                {options.map((opt) => {
+                    return (
+                        <Button
+                            variant={"outline"}
+                            onClick={() => navigate(opt.path)}
+                            key={opt.id}
+                        >
+                            {opt.text}
+                        </Button>
+                    );
+                })}
+            </div>
         </div>
     );
 };
