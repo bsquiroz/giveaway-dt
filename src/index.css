@@ -56,4 +56,19 @@
     body {
         @apply bg-background text-foreground;
     }
+
+    body::-webkit-scrollbar {
+        width: 8px; /* Tamaño del scroll en vertical */
+        height: 8px; /* Tamaño del scroll en horizontal */
+    }
+
+    /* Ponemos un color de fondo y redondeamos las esquinas del thumb */
+    body::-webkit-scrollbar-thumb {
+        @apply bg-primary rounded-full;
+    }
+
+    /* Ponemos un color de fondo y redondeamos las esquinas del track */
+    body::-webkit-scrollbar-track {
+        @apply bg-background;
+    }
 }
